@@ -151,7 +151,9 @@ console.log("myCar has " + myCar.doors + " doors");
 
       // STEP 5 - wait until data is finished loading before injecting it
       XHR.addEventListener("load", function () {
-        let gameListBody = document.getElementById("gameListBody");
+        //let gameListBody = document.getElementById("gameListBody");
+
+        let gameListBody = $("#gameListBody");
 
         // for each game in data.games repeat
         data.games.forEach(function (game) {
@@ -162,7 +164,7 @@ console.log("myCar has " + myCar.doors + " doors");
           <td class="text-center">${game.cost}</td>
           <td class="text-center">${game.rating}</td>
         `;
-          gameListBody.appendChild(newRow);
+          gameListBody[0].appendChild(newRow);
         }, this);
 
       });
@@ -216,7 +218,11 @@ function LoadContactPage() {
       let ContactNumber = document.getElementById("ContactNumber");
       let Email = document.getElementById("Email");
       let Message = document.getElementById("Message");
-      let SendButton = document.getElementById("SendButton");
+      //let SendButton = document.getElementById("SendButton"); -- Vanilla JavaScript
+      let SendButton = $("#SendButton")[0]; //-- jQuery
+      //let SendButton = document.querySelectorAll("#SendButton")[0]; -- Vanilla JavaScript
+
+      console.log(SendButton.textContent);
 
       SendButton.addEventListener("click", function (event) {
         event.preventDefault();
