@@ -13,7 +13,10 @@
     }
     // Loads the Main Navigation using AJAX
     function LoadNavBar() {
-        var mainNav = document.getElementById("mainNav");
+        //var mainNav = document.getElementById("mainNav");
+
+        var mainNav = $("#mainNav")[0];
+
         var navbarHTML;
         // STEP 1 - need an XHR object
         var navXHR = new XMLHttpRequest();
@@ -133,11 +136,31 @@
         var ShowButton = document.getElementById("ShowButton");
         var FirstProjectImage = document.getElementById("FirstProjectImage");
         var ButtonArray = [HideButton, HalfSizeButton, ThreeQuarterSizeButton, ShowButton];
-        // loop through the array of butttons
+
+        let buttons = $("button");
+
+        buttons.click(ButtonClick);
+
+        buttons.hover(
+          function(){
+            $(this).attr("class", "btn btn-success btn-lg");
+        },
+          function(){
+            $(this).attr("class", "btn btn-danger btn-lg");
+        }
+        );
+
+        buttons.attr("class", "btn btn-danger btn-lg");
+
+        buttons.css("color", "yellow");
+
+        /*
         ButtonArray.forEach(function (button) {
             // set an event listener for each button
             button.addEventListener("click", ButtonClick);
         }, this);
+        */
+
         // Use one named function, ButtonClick to respond to each of the buttons
         function ButtonClick(event) {
             // store which button has been clicked in currentButton
@@ -179,8 +202,17 @@
             console.log(Email);
             console.log(Message);
         });
+
+        $("input").dblclick(function(){
+          $(this).val(""); // clears the text box
+        });
+
+        $("input").on("dblclick", function(){
+          $(this).css("background", "red");
+        });
     }
     // call the Start function when the window loads
     window.onload = Start; // Start is the callback function / event handler
 })(); // end of the IIFE
 //# sourceMappingURL=app.js.map
+
